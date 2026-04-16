@@ -9,191 +9,263 @@ draft: false
 lang: ''
 ---
 
-# 🛠 Git 新手完全指南（Windows / Linux / Mac 通用）
+# Git 操作手册（实用全版）
+
+## 一、基础概念
+
+* 工作区：你改代码的地方
+* 暂存区（index）：准备提交的内容
+* 仓库（repo）：Git 管理的数据
+* HEAD：当前指向的提交
+* 分支：一条提交链
 
 ---
 
-## 1️⃣ **Git 基本概念**
-
-在动手之前，你需要知道 Git 是干嘛的：
-
-* **Git**：版本控制工具，帮你保存、回退和同步代码。
-* **仓库（Repository）**：存放代码的地方，可以在本地，也可以在 GitHub 等平台。
-* **分支（Branch）**：代码的不同版本，`main` 或 `master` 是主分支。
-* **提交（Commit）**：保存代码的快照。
-* **远程（Remote）**：比如 GitHub、GitLab 等代码托管平台。
-
----
-
-## 2️⃣ **首次安装与配置**
-
-### 安装
-
-* Windows: [下载 Git](https://git-scm.com/download/win) → 一路下一步安装。
-* Linux:
-
-  ```bash
-  sudo apt install git    # Debian/Ubuntu
-  sudo yum install git    # CentOS
-  ```
-* Mac:
-
-  ```bash
-  brew install git
-  ```
-
-### 配置用户名和邮箱（只做一次）
+## 二、初始化与配置
 
 ```bash
-git config --global user.name "你的Git用户名"
-git config --global user.email "你的Git邮箱"
+git init                    # 初始化仓库
+git clone <url>            # 克隆远程仓库
+
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
 ```
 
-⚠️ 这要和你 GitHub 注册的邮箱一致，才能关联你的提交记录。
-
----
-
-## 3️⃣ **常用 Git 命令速查表**
-
-| 操作       | 命令                              |
-| -------- | ------------------------------- |
-| 初始化本地仓库  | `git init`                      |
-| 查看状态     | `git status`                    |
-| 添加文件到暂存区 | `git add 文件名` / `git add .`（全部） |
-| 提交到本地仓库  | `git commit -m "提交说明"`          |
-| 查看提交历史   | `git log`                       |
-| 新建标签     | `git tag -a "标签名字" -m "标签描述"`                |
-| 新建分支     | `git branch 分支名`                |
-| 切换分支     | `git checkout 分支名`              |
-| 合并分支     | `git merge 分支名`                 |
-| 添加远程仓库   | `git remote add origin 仓库地址`    |
-| 推送到远程    | `git push -u origin 分支名`        |
-| 拉取远程代码   | `git pull origin 分支名`           |
-| 克隆远程仓库   | `git clone 仓库地址`                |
-
----
-
-## 4️⃣ **本地项目推送到 GitHub（从 0 开始）**
-
-假设你已经在 GitHub 创建了一个空仓库。
+查看配置：
 
 ```bash
-# 进入你的项目目录
-cd 你的项目文件夹路径
+git config --list
+```
 
-# 初始化本地仓库
-git init
+---
 
-# 添加所有文件到暂存区
+## 三、基本流程（最常用）
+
+```bash
+git status                 # 查看状态
+git add <file>             # 添加到暂存区
+git add .                  # 全部添加
+
+git commit -m "说明"       # 提交
+
+git log                    # 查看提交记录
+git log --oneline          # 简洁版
+```
+
+---
+
+## 四、分支操作
+
+```bash
+git branch                 # 查看分支
+git branch <name>          # 创建分支
+git checkout <name>        # 切换分支
+git checkout -b <name>     # 创建并切换
+
+git switch <name>          # 新写法（推荐）
+
+git merge <name>           # 合并分支
+```
+
+删除分支：
+
+```bash
+git branch -d <name>
+```
+
+---
+
+## 五、远程仓库
+
+```bash
+git remote -v             # 查看远程
+git remote add origin <url>
+
+git push -u origin main   # 推送
+git push                  # 后续直接推
+
+git pull                  # 拉取并合并
+git fetch                 # 只拉取不合并
+```
+
+---
+
+## 六、撤销操作（重点）
+
+### 1. 撤销工作区修改
+
+```bash
+git checkout -- <file>
+# 或
+git restore <file>
+```
+
+### 2. 撤销暂存区
+
+```bash
+git reset HEAD <file>
+```
+
+### 3. 回退提交
+
+```bash
+git reset --soft HEAD~1    # 保留代码
+git reset --hard HEAD~1    # 全部回退（危险）
+```
+
+### 4. 反向提交（安全）
+
+```bash
+git revert <commit>
+```
+
+---
+
+## 七、查看差异
+
+```bash
+git diff                  # 工作区 vs 暂存区
+git diff --cached         # 暂存区 vs 仓库
+git diff HEAD             # 工作区 vs 最新提交
+```
+
+---
+
+## 八、暂存（stash）
+
+```bash
+git stash                 # 临时保存
+git stash pop             # 恢复并删除
+git stash list            # 查看
+git stash apply           # 恢复但不删
+```
+
+---
+
+## 九、标签（Tag）
+
+```bash
+git tag                   # 查看
+git tag v1.0              # 创建标签
+git push origin v1.0      # 推送标签
+```
+
+---
+
+## 十、日志与历史
+
+```bash
+git log --graph --oneline --all
+git show <commit>
+git reflog                # 查看操作历史（救命用）
+```
+
+---
+
+## 十一、冲突处理
+
+出现冲突后：
+
+```text
+<<<<<<< HEAD
+当前分支内容
+=======
+目标分支内容
+>>>>>>> branch
+```
+
+处理步骤：
+
+1. 手动修改文件
+2. 删除冲突标记
+3. `git add`
+4. `git commit`
+
+---
+
+## 十二、rebase（进阶）
+
+```bash
+git rebase <branch>
+```
+
+作用：
+
+* 让提交更线性
+* 替代 merge
+
+交互式：
+
+```bash
+git rebase -i HEAD~3
+```
+
+可：
+
+* 合并提交
+* 修改 commit message
+* 删除提交
+
+---
+
+## 十三、常见工作流
+
+### 1. 标准开发流程
+
+```bash
+git checkout -b feature/xxx
+# 开发
 git add .
+git commit -m "feat: xxx"
 
-# 提交到本地仓库
-git commit -m "first commit"
-
-# 默认分支改成 main（GitHub 默认）
-git branch -M main
-
-# 添加远程仓库（替换成你自己的）
-git remote add origin https://github.com/kobayashirei/blog.git
-
-# 推送到 GitHub
-git push -u origin main
+git pull --rebase origin main
+git push origin feature/xxx
 ```
 
 ---
 
-## 5️⃣ **从 GitHub 拉取项目到本地**
-
-如果别人给了你一个仓库地址：
+### 2. 更新本地代码
 
 ```bash
-git clone https://github.com/用户名/仓库名.git
+git pull --rebase
 ```
-
-会在当前文件夹生成一个同名目录，里面就是完整项目。
 
 ---
 
-## 6️⃣ **日常开发流程（单人版）**
+## 十四、忽略文件
+
+`.gitignore`
+
+```
+node_modules/
+dist/
+*.log
+.env
+```
+
+---
+
+## 十五、子模块（了解）
 
 ```bash
-# 1. 拉取远程最新代码
-git pull origin main
-
-# 2. 修改文件...
-
-# 3. 查看修改状态
-git status
-
-# 4. 添加修改到暂存区
-git add .
-
-# 5. 提交修改
-git commit -m "描述你的改动"
-
-# 6. 推送到远程
-git push origin main
+git submodule add <url>
+git submodule update --init --recursive
 ```
 
 ---
 
-## 7️⃣ **撤销 & 回退**
+## 十六、常见坑
 
-* 撤销未暂存的修改：
-
-  ```bash
-  git checkout -- 文件名
-  ```
-* 取消暂存区的文件：
-
-  ```bash
-  git reset 文件名
-  ```
-* 回退到上一个提交：
-
-  ```bash
-  git reset --hard HEAD^
-  ```
+* ❌ `git reset --hard` 会丢数据
+* ❌ rebase 后不要强推公共分支
+* ❌ 不要在 main 直接开发
+* ❌ 忘记 pull 就 push → 冲突
 
 ---
 
-## 8️⃣ **进阶技巧**
+## 十七、救命命令
 
-* 查看分支：
-
-  ```bash
-  git branch
-  ```
-* 删除分支：
-
-  ```bash
-  git branch -d 分支名
-  ```
-* 合并分支：
-
-  ```bash
-  git merge 分支名
-  ```
-* 拉取时自动合并：
-
-  ```bash
-  git pull --rebase
-  ```
-
----
-
-## 9️⃣ **遇到常见错误**
-
-* **`error: src refspec main does not match any`**
-  → 本地没有 `main` 分支，先用 `git branch -M main`。
-* **`failed to push some refs`**
-  → 本地和远程不一致，先 `git pull origin main --rebase` 再推送。
-
----
-
-## 🔟 学习建议
-
-1. 先把 **初始化 → 提交 → 推送** 这三步练熟。
-2. 养成**每次改动后 `git status`** 的习惯。
-3. 每次推送前先 `git pull`，避免冲突。
-4. 冲突不要怕，Git 会提示你怎么改。
+```bash
+git reflog                # 找回误删提交
+git reset --hard <hash>   # 回到某次状态
+```
