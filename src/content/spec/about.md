@@ -9,8 +9,6 @@
 
 我叫 **小林**（**XiaoLin**），直接叫我“小林”就好了。
 
-另外 **Rei** 的由来则是因为，在日语中可以译作 **零**，寓意着“从零开始”。
-
 ---
 
 ### 我在做什么？
@@ -26,9 +24,12 @@
 ### 如何联系？
 
 * QQ 2152719569
-* [BiliBili](https://space.bilibili.com/403597865)
+<!-- * [BiliBili](https://space.bilibili.com/403597865)
 * [Github](https://github.com/rei0721)
 * [Twitter](https://x.com/rei0721x)
-* [Telegram](https://t.me/rei0721qwq)
+* [Telegram](https://t.me/rei0721qwq) -->
 
-![可爱小楠凉](./qq_group.png "可爱小楠凉")
+- QQ群
+
+<!-- ![可爱小楠凉](./qq_group.png "可爱小楠凉（已被封禁）") -->
+![可爱小楠凉](./qq_group_2.png "可爱小楠凉")

@@ -8,7 +8,7 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Rei's Blog",
+	title: "Rin's Blog",
 	subtitle: "一个fvv，", // A short description or tagline for your blog
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	
@@ -53,34 +53,56 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "GitHub",
-			url: "https://github.com/rei0721", // Internal links should not include the base path, as it is automatically added
+			url: "https://github.com/rin721", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
+		{
+			name: "Email",
+			url: "mailto:rin721qwq@gmail.com", // Internal links should not include the base path, as it is automatically added
+			external: true, // Show an external link icon and will open in a new tab
+		}
 		
 	],
 };
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/xiaolin-avatar.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Rei's Blog",
+	name: "Rin's Blog",
 	bio: "一个fvv，", // A short bio or description
 	links: [
-		// {
-		// 	name: "Twitter",
-		// 	icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
-		// 	// You will need to install the corresponding icon set if it's not already included
-		// 	// `pnpm add @iconify-json/<icon-set-name>`
-		// 	url: "https://twitter.com",
-		// },
+		{
+			name: "Twitter",
+			icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
+			// You will need to install the corresponding icon set if it's not already included
+			// `pnpm add @iconify-json/<icon-set-name>`
+			url: "https://twitter.com/rin721qwq",
+		},
 		// {
 		// 	name: "Steam",
 		// 	icon: "fa6-brands:steam",
 		// 	url: "https://store.steampowered.com",
 		// },
 		{
+			name: "Telegram",
+			icon: "fa6-brands:telegram",
+			url: "https://t.me/rin721qwq",
+			// external: true, // Show an external link icon and will open in a new tab
+			// Note: Telegram links should use the format https://t.me/username for best compatibility with link preview plugins. Links using the tg:// protocol may not work correctly with some plugins.
+		},
+		{
+			name: "Email",
+			icon: "fa6-solid:envelope",
+			url: "mailto:rin721qwq@gmail.com"
+		},
+		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/rei0721",
+			url: "https://github.com/rin721",
+		},
+		{
+			name: "BiliBili",
+			icon: "fa6-brands:bilibili",
+			url: "https://space.bilibili.com/403597865", // Replace with actual BiliBili URL
 		},
 	],
 };
